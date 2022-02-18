@@ -1,0 +1,24 @@
+Bank:
+
+--umożliwia założenie klienta
+--umożliwia usunięcia klienta
+--przechowuje zbiór klientów
+
+Klienci:
+
+--może założyć konto
+--może usunąć konto
+--ma listę własnych kont
+--może wpłacić na konto
+--może wypłacić z konta (do wysokości posiadanych środków)
+
+Konta
+pola:
+--ma walutę
+--ma saldo
+
+funkcje:
+--odczyt waluty
+--odczyt salda
+--dodanie do salda
+--odjęcie od salda
