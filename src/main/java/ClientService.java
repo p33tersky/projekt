@@ -8,9 +8,17 @@ import java.util.stream.Collectors;
 public class ClientService {
     private static Integer accountNumber = 1;
 
-    public void createAccount(Client client, String currency) {
 
-        Account account = new Account(accountNumber, new BigDecimal(0), currency );
+    public Account createAccount(String currency) { //SRP - single responsibility
+
+        return new Account(accountNumber, new BigDecimal(0), currency);
+//        client.getAccountList().add(account);
+//        System.out.println("Dodano konto klienta o imieniu " + client.getFirstName() + " o numerze " + accountNumber);
+//        accountNumber++;
+
+    }
+
+    public void addAccountToClient(Client client, Account account) {
         client.getAccountList().add(account);
         System.out.println("Dodano konto klienta o imieniu " + client.getFirstName() + " o numerze " + accountNumber);
         accountNumber++;
@@ -27,17 +35,17 @@ public class ClientService {
 
     }
 
-    public void deposit(Client client, BigDecimal amount, int id) {
+    public void deposit(Client client, BigDecimal amount, int accountId) {
 
         Optional<Account> searchedAccount = client.getAccountList().stream()
-                .filter(t -> t.getId() == id)
-                .findAny();
+                .filter(t -> t.getId() == accountId)
+                .findAny(); //ifPresent
 
         if (searchedAccount.isEmpty()) {
             System.out.println("Konto o podanym ID nie istnieje");
         } else {
             searchedAccount.get().setBalance(searchedAccount.get().getBalance().add(amount));
-            System.out.println("Na konto o numerze " + id + " przelano " + amount);
+            System.out.println("Na konto o numerze " + accountId + " przelano " + amount);
         }
 //        client.getAccountList().stream().filter(a ->
 //             a.getId()==id
@@ -47,16 +55,16 @@ public class ClientService {
 //        });
     }
 
-    public void cashout(Client client, BigDecimal amount, int id){
+    public void cashout(Client client, BigDecimal amount, int accountId){
         Optional<Account> searchedAccount = client.getAccountList().stream()
-                .filter(t -> t.getId() == id)
+                .filter(t -> t.getId() == accountId)
                 .findAny();
 
         if (searchedAccount.isEmpty()) {
             System.out.println("Konto o podanym ID nie istnieje");
         } else {
             searchedAccount.get().setBalance(searchedAccount.get().getBalance().subtract(amount));
-            System.out.println("Z konta o numerze" + id + " wypłacono " + amount);
+            System.out.println("Z konta o numerze" + accountId + " wypłacono " + amount);
         }
     }
 

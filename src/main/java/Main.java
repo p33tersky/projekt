@@ -11,29 +11,55 @@ public class Main {
         Client client2 = new Client(1, "Adrian", "Boski", new ArrayList<>());
         Client client3 = new Client(1, "Daria", "Mędrek", new ArrayList<>());
 
+
         BankService bankService = new BankService();
         bankService.addClient(client);
-        bankService.addClient(client1);
         bankService.addClient(client2);
         bankService.addClient(client3);
 
-
+        System.out.println(client);
         ClientService clientService = new ClientService();
+        Account account1 = clientService.createAccount("USD");
 
-        clientService.createAccount(client, "PLN");
-        clientService.createAccount(client, "USD");
-        clientService.createAccount(client3,"USD");
+        clientService.addAccountToClient(client, account1);
         System.out.println(client);
-        System.out.println(client3);
-        clientService.deleteAccount(client, 1);
 
 
 
-        System.out.println(client);
-        clientService.deposit(client, new BigDecimal(200), 2);
-        System.out.println(client);
-        clientService.cashout(client, new BigDecimal(100), 2);
-        System.out.println(client);
+
+
+
+
+
+
+
+
+
+
+//        BankService bankService = new BankService();
+//        bankService.addClient(client);
+//        bankService.addClient(client1);
+//        bankService.addClient(client2);
+//        bankService.addClient(client3);
+//
+//
+//        ClientService clientService = new ClientService();
+//
+//        clientService.createAccount(client, "PLN");
+//
+//        clientService.createAccount(client, "USD");
+//        clientService.createAccount(client3,"USD");
+//        System.out.println(client);
+//        System.out.println(client3);
+//        clientService.deleteAccount(client, 1);
+//
+//
+//
+//        System.out.println(client);
+//        clientService.deposit(client, new BigDecimal(200), 2);
+//        System.out.println(client);
+//        clientService.cashout(client, new BigDecimal(100), 2);
+//        System.out.println(client);
 
 
     }
