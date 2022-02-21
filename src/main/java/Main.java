@@ -26,25 +26,15 @@ public class Main {
         System.out.println(client);
         System.out.println(client3);
         clientService.deleteAccount(client, 1);
+
+
+
+        System.out.println(client);
+        clientService.deposit(client, new BigDecimal(200), 1);
+        System.out.println(client);
+        clientService.cashout(client, new BigDecimal(100), 1);
         System.out.println(client);
 
-        for (int i = 0; i < 10; i++) {
-            clientService.createAccount(client, "PLN");
-        }
-        clientService.deleteAccount(client, 599);
-        System.out.println(client);
-        System.out.println(client.getAccountList().size());
-
-        clientService.deposit(client,new BigDecimal(200),2);
-        clientService.deposit(client,new BigDecimal(300),3);
-        clientService.deposit(client,new BigDecimal(20000),10);
-        clientService.deposit(client,new BigDecimal(200),1);
-        System.out.println(client.getAccountList());
-
-        clientService.cashout(client,new BigDecimal(5000),10);
-        clientService.cashout(client,new BigDecimal(5000),1);
-        clientService.cashout(client,new BigDecimal(3000),2);
-        System.out.println(client.getAccountList());
 
 
 
