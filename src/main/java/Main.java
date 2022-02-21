@@ -7,9 +7,9 @@ public class Main {
     public static void main(String[] args) {
 
         Client client = new Client(1, "Adam", "Bosak", new ArrayList<>());
-        Client client1 = new Client(1, "Agata", "Kowalska", new ArrayList<>());
-        Client client2 = new Client(1, "Adrian", "Boski", new ArrayList<>());
-        Client client3 = new Client(1, "Daria", "Mędrek", new ArrayList<>());
+        Client client1 = new Client(2, "Agata", "Kowalska", new ArrayList<>());
+        Client client2 = new Client(3, "Adrian", "Boski", new ArrayList<>());
+        Client client3 = new Client(4, "Daria", "Mędrek", new ArrayList<>());
 
 
         BankService bankService = new BankService();
@@ -23,6 +23,7 @@ public class Main {
 
         clientService.addAccountToClient(client, account1);
         System.out.println(client);
+
 
 
 
