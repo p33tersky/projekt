@@ -19,7 +19,7 @@ public class ClientService {
     public void deleteAccount(Client client, int accountIdToDelete) {  //forEach lub stream, optional
 
         boolean isRemoved = client.getAccountList().removeIf(t -> t.getId() == accountIdToDelete);
-        if (isRemoved = true) {
+        if (isRemoved) {
             System.out.println("Usunięto konto o ID " + accountIdToDelete);
         } else {
             System.out.println("Konto o podanym ID nie istnieje");
@@ -37,8 +37,14 @@ public class ClientService {
             System.out.println("Konto o podanym ID nie istnieje");
         } else {
             searchedAccount.get().setBalance(searchedAccount.get().getBalance().add(amount));
-            System.out.println("Na konto o numerze" + id + " przelano " + amount);
+            System.out.println("Na konto o numerze " + id + " przelano " + amount);
         }
+//        client.getAccountList().stream().filter(a ->
+//             a.getId()==id
+//        ).findAny().ifPresent(a-> {
+//            BigDecimal cash = client.getAccountList().get().getBalance();
+//            client.getAccountList().get(id).setBalance(cash.add(amount));
+//        });
     }
 
     public void cashout(Client client, BigDecimal amount, int id){
@@ -53,6 +59,5 @@ public class ClientService {
             System.out.println("Z konta o numerze" + id + " wypłacono " + amount);
         }
     }
-
 
 }

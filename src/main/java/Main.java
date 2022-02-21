@@ -30,12 +30,10 @@ public class Main {
 
 
         System.out.println(client);
-        clientService.deposit(client, new BigDecimal(200), 1);
+        clientService.deposit(client, new BigDecimal(200), 2);
         System.out.println(client);
-        clientService.cashout(client, new BigDecimal(100), 1);
+        clientService.cashout(client, new BigDecimal(100), 2);
         System.out.println(client);
-
-
 
 
     }
