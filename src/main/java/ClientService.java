@@ -35,6 +35,8 @@ public class ClientService {
 
     }
 
+
+
     public void deposit(Client client, BigDecimal amount, int accountId) {
 
         Optional<Account> searchedAccount = client.getAccountList().stream()
@@ -47,6 +49,7 @@ public class ClientService {
             searchedAccount.get().setBalance(searchedAccount.get().getBalance().add(amount));
             System.out.println("Na konto o numerze " + accountId + " przelano " + amount);
         }
+
 //        client.getAccountList().stream().filter(a ->
 //             a.getId()==id
 //        ).findAny().ifPresent(a-> {
@@ -55,7 +58,7 @@ public class ClientService {
 //        });
     }
 
-    public void cashout(Client client, BigDecimal amount, int accountId){
+    public void cashOut(Client client, BigDecimal amount, int accountId){
         Optional<Account> searchedAccount = client.getAccountList().stream()
                 .filter(t -> t.getId() == accountId)
                 .findAny();
@@ -63,8 +66,13 @@ public class ClientService {
         if (searchedAccount.isEmpty()) {
             System.out.println("Konto o podanym ID nie istnieje");
         } else {
-            searchedAccount.get().setBalance(searchedAccount.get().getBalance().subtract(amount));
-            System.out.println("Z konta o numerze" + accountId + " wypłacono " + amount);
+            if(searchedAccount.get().getBalance().compareTo(amount)>=0){
+                searchedAccount.get().setBalance(searchedAccount.get().getBalance().subtract(amount));
+                System.out.println("Z konta o numerze" + accountId + " wypłacono " + amount);
+            }
+            else {
+                System.out.println("Brak hajsu, elo");
+            }
         }
     }
 
