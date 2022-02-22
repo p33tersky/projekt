@@ -1,7 +1,5 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,11 +22,12 @@ public class Main {
         clientService.addAccountToClient(client, account1);
         System.out.println(client);
 
-
-
-
-
-
+        clientService.deposit(client, new BigDecimal(300), 1);
+        System.out.println(client);
+        clientService.cashOut(client, new BigDecimal(400), 10);
+        clientService.cashOut(client, new BigDecimal(100), 1);
+        clientService.cashOut(client, new BigDecimal(700), 1);
+        System.out.println(client);
 
 
 
