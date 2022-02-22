@@ -4,11 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ClientServiceTest {
 ClientService clientService;
@@ -70,15 +67,50 @@ Client client;
         //TODO zapytać o TDD
     }
 
+
     @Test
-    void cashout() {
+    void cashOut() {
         //GIVEN
         BigDecimal amount = new BigDecimal(100);
-        BigDecimal beforeDeposit = client.getAccountList().get(0).getBalance();
         //WHEN
-        clientService.cashout(client, amount, 1);
+        clientService.cashOut(client, amount, 1);
         //THEN
-        BigDecimal afterDeposit = client.getAccountList().get(0).getBalance();
-        Assertions.assertThat(afterDeposit).as("Test failure").isEqualTo(new BigDecimal(100));
+        BigDecimal afterCashOut = client.getAccountList().get(0).getBalance();
+        Assertions.assertThat(afterCashOut).as("Test failure").isEqualTo(new BigDecimal(100));
     }
+
+    @Test
+    void shouldNotCashOutWhenAmountIsBiggerThanBalance(){
+        //GIVEN
+        BigDecimal amount = new BigDecimal(1000);
+        //WHEN
+        clientService.cashOut(client, amount, 1);
+        //THEN
+        BigDecimal afterCashOut = client.getAccountList().get(0).getBalance();
+        Assertions.assertThat(afterCashOut).as("Test failure").isEqualTo(new BigDecimal(200));
+    }
+
+
+    @Test
+    void shouldNotCashOutWhenAccountIdIsInvalid (){
+        //GIVEN
+        BigDecimal amount = new BigDecimal(100);
+        //WHEN
+        clientService.cashOut(client, amount, 3);
+        //THEN
+        BigDecimal afterCashOut = client.getAccountList().get(0).getBalance();
+        Assertions.assertThat(afterCashOut).as("Test failure").isEqualTo(new BigDecimal(200));
+    }
+
+    @Test
+    void shouldNotDepositWhenAccountIdIsInvalid (){
+        //GIVEN
+        BigDecimal amount = new BigDecimal(100);
+        //WHEN
+        clientService.deposit(client, amount, 3);
+        //THEN
+        BigDecimal afterCashOut = client.getAccountList().get(0).getBalance();
+        Assertions.assertThat(afterCashOut).as("Test failure").isEqualTo(new BigDecimal(200));
+    }
+
 }
