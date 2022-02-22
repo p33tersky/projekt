@@ -1,3 +1,6 @@
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.HashSet;
 
 public class BankService {
@@ -20,4 +23,6 @@ public class BankService {
         bank.getClients().remove(client);
         System.out.println(client.getFirstName() + " " + client.getLastName() + " narazie, elo, naura");
     }
+
+
 }

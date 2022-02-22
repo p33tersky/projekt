@@ -4,9 +4,9 @@ import java.util.List;
 public class Account {
     private int id;
     private BigDecimal balance;
-    private String currency;
+    private Currency currency;
 
-    public Account(int id, BigDecimal balance, String currency) {
+    public Account(int id, BigDecimal balance, Currency currency) {
         this.id = id;
         this.balance = balance;
         this.currency = currency;
@@ -28,11 +28,11 @@ public class Account {
         this.balance = balance;
     }
 
-    public String getCurrency() {
+    public Currency getCurrency() {
         return currency;
     }
 
-    public void setCurrency(String currency) {
+    public void setCurrency(Currency currency) {
         this.currency = currency;
     }
 
