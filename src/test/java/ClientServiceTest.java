@@ -5,33 +5,31 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import static org.assertj.core.api.Assertions.assertThat;
 
 class ClientServiceTest {
-ClientService clientService;
-Client client;
+    ClientService clientService;
+    Client client;
 
     @BeforeEach
     public void setUp() {
         clientService = new ClientService();
         client = new Client(1, "ola", "nowak", new ArrayList<>());
-        client.getAccountList().add(0, new Account(1, new BigDecimal(200), "PLN"));
+        client.getAccountList().add(0, new Account(1, new BigDecimal(200), Currency.PLN));
     }
 
     @Test
     void createAccount() {
-
         //WHEN
-        Account account = clientService.createAccount("PLN");
+        Account account = clientService.createAccount(Currency.PLN);
         //THEN
-        Assertions.assertThat(account.getCurrency()).isNotEmpty();
+        Assertions.assertThat(account.getBalance()).isEqualTo(BigDecimal.valueOf(0));
     }
 
     @Test
     void addAccountToClient() {
         //GIVEN
         int currentSize = client.getAccountList().size();
-        Account account = new Account(10, BigDecimal.valueOf(200),"USD");
+        Account account = new Account(10, BigDecimal.valueOf(200), Currency.EUR);
         //WHEN
         clientService.addAccountToClient(client, account);
         //THEN
@@ -63,8 +61,6 @@ Client client;
         BigDecimal newBalance = client.getAccountList().get(0).getBalance();
         Assertions.assertThat(newBalance).as("Test failure").isEqualTo(BigDecimal.valueOf(300));
 
-        //TODO string calculator kata
-        //TODO zapytać o TDD
     }
 
 
@@ -80,7 +76,7 @@ Client client;
     }
 
     @Test
-    void shouldNotCashOutWhenAmountIsBiggerThanBalance(){
+    void shouldNotCashOutWhenAmountIsBiggerThanBalance() {
         //GIVEN
         BigDecimal amount = new BigDecimal(1000);
         //WHEN
@@ -90,9 +86,9 @@ Client client;
         Assertions.assertThat(afterCashOut).as("Test failure").isEqualTo(new BigDecimal(200));
     }
 
-// dzien dobry x33
+    // dzien dobry x33
     @Test
-    void shouldNotCashOutWhenAccountIdIsInvalid (){
+    void shouldNotCashOutWhenAccountIdIsInvalid() {
         //GIVEN
         BigDecimal amount = new BigDecimal(100);
         //WHEN
@@ -103,7 +99,7 @@ Client client;
     }
 
     @Test
-    void shouldNotDepositWhenAccountIdIsInvalid (){
+    void shouldNotDepositWhenAccountIdIsInvalid() {
         //GIVEN
         BigDecimal amount = new BigDecimal(100);
         //WHEN

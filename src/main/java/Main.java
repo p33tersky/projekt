@@ -9,6 +9,8 @@ public class Main {
         Client client2 = new Client(3, "Adrian", "Boski", new ArrayList<>());
         Client client3 = new Client(4, "Daria", "Mędrek", new ArrayList<>());
 
+        CurrencyService currencyService = new CurrencyService();
+
 
         BankService bankService = new BankService();
         bankService.addClient(client);
@@ -17,7 +19,7 @@ public class Main {
 
         System.out.println(client);
         ClientService clientService = new ClientService();
-        Account account1 = clientService.createAccount("USD");
+        Account account1 = clientService.createAccount(Currency.USD);
 
         clientService.addAccountToClient(client, account1);
         System.out.println(client);
@@ -29,38 +31,9 @@ public class Main {
         clientService.cashOut(client, new BigDecimal(700), 1);
         System.out.println(client);
 
-
-
-
-
-
-
-
-//        BankService bankService = new BankService();
-//        bankService.addClient(client);
-//        bankService.addClient(client1);
-//        bankService.addClient(client2);
-//        bankService.addClient(client3);
-//
-//
-//        ClientService clientService = new ClientService();
-//
-//        clientService.createAccount(client, "PLN");
-//
-//        clientService.createAccount(client, "USD");
-//        clientService.createAccount(client3,"USD");
-//        System.out.println(client);
-//        System.out.println(client3);
-//        clientService.deleteAccount(client, 1);
-//
-//
-//
-//        System.out.println(client);
-//        clientService.deposit(client, new BigDecimal(200), 2);
-//        System.out.println(client);
-//        clientService.cashout(client, new BigDecimal(100), 2);
-//        System.out.println(client);
-
+        System.out.println(currencyService.convert(BigDecimal.valueOf(1000),Currency.GBP,Currency.EUR));
+        System.out.println(currencyService.convert(BigDecimal.valueOf(300),Currency.USD,Currency.EUR));
+        System.out.println(currencyService.convert(BigDecimal.valueOf(10),Currency.PLN,Currency.USD));
 
     }
 }
