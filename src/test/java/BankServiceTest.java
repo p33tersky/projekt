@@ -35,5 +35,12 @@ class BankServiceTest {
 
     @Test
     void removeClient() {
+        //GIVEN
+        int currentSize = bank.getClients().size();
+        //WHEN
+        bankService.addClient(new Client(2, "Daria", "Mędrek", new ArrayList<>()));
+        //THEN
+        int newCurrentSize = bank.getClients().size();
+        Assertions.assertThat(newCurrentSize).as("Test failure").isEqualTo(currentSize - 1);
     }
 }
