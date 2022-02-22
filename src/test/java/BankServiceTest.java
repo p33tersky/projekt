@@ -15,10 +15,11 @@ class BankServiceTest {
 
     @BeforeEach
     public void setUp() {
-        bank = new Bank(new HashSet<>());
         bankService = new BankService();
-        Client client = new Client(69, "Piotr", "Włostek", new ArrayList<>());
-        bank.getClients().add(client);
+        bank = new Bank(new HashSet<>());
+        Client client = new Client(1, "Piotr", "Włostek", new ArrayList<>());
+        bankService.setBank(bank);
+        bankService.getBank().getClients().add(client);
     }
 
     @Test
