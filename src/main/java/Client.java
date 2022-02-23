@@ -1,5 +1,6 @@
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -9,14 +10,19 @@ public class Client {
     private String firstName;
     private String lastName;
     private List<Account> accountList;
+    //builder płeć wiek pesel miasto zamieszkania nip
 
-    public Client(int id, String firstName, String lastName, List<Account> list) {
+    private Client(int id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.accountList = list;
+        this.accountList = new ArrayList<>();
     }
 
+    //factory pattern
+    public static Client createClient (int id, String firstName, String lastName) {
+        return  new Client(id, firstName, lastName);
+    }
 
     @Override
     public String toString() {

@@ -15,6 +15,15 @@ public class Account {
         this.currency = currency;
     }
 
+    public static Account createAccount(String type, int id, BigDecimal balance, Currency currency) {
+        if (type.equals("Savings")){
+            return new SavingsAccount(id,balance,currency);
+        }else if (type.equals("Youth")){
+            return new YouthAccount(id,balance,currency);
+        }
+        return null;
+    }
+
 
     @Override
     public String toString() {
