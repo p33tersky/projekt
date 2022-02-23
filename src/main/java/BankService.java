@@ -1,18 +1,14 @@
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.HashSet;
 
+@Data
 public class BankService {
     private Bank bank = new Bank(new HashSet<>());
 
-    public Bank getBank() {
-        return bank;
-    }
-
-    public void setBank(Bank bank) {
-        this.bank = bank;
-    }
 
     public void addClient (Client client) {
         bank.getClients().add(client);

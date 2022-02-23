@@ -1,6 +1,9 @@
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.List;
 
+@Data
 public class Account {
     private int id;
     private BigDecimal balance;
@@ -12,29 +15,6 @@ public class Account {
         this.currency = currency;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
-    }
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
 
     @Override
     public String toString() {

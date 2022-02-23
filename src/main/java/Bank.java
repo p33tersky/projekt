@@ -1,20 +1,13 @@
+import lombok.Data;
+
 import java.util.Set;
 
+@Data
 public class Bank {
 
     private Set<Client> clients;
 
     public Bank(Set<Client> clients) {
-
-        this.clients = clients;
-    }
-
-    public Set<Client> getClients() {
-
-        return clients;
-    }
-
-    public void setClients(Set<Client> clients) {
 
         this.clients = clients;
     }
