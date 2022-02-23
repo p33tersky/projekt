@@ -16,7 +16,7 @@ class BankServiceTest {
     public void setUp() {
         bankService = new BankService();
         bank = new Bank(new HashSet<>());
-        client = new Client(1, "Piotr", "Włostek", new ArrayList<>());
+        client = Client.createClient(1, "Piotr", "Włostek");
         bankService.setBank(bank);
         bankService.getBank().getClients().add(client);
     }
@@ -26,7 +26,7 @@ class BankServiceTest {
         //GIVEN
         int currentSize = bank.getClients().size();
         //WHEN
-        bankService.addClient(new Client(2, "Daria", "Mędrek", new ArrayList<>()));
+        bankService.addClient(Client.createClient(2, "Daria", "Mędrek"));
         //THEN
         int newCurrentSize = bank.getClients().size();
         Assertions.assertThat(newCurrentSize).as("Test failure").isEqualTo(currentSize + 1);

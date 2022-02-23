@@ -13,14 +13,14 @@ class ClientServiceTest {
     @BeforeEach
     public void setUp() {
         clientService = new ClientService();
-        client = new Client(1, "ola", "nowak", new ArrayList<>());
+        client = Client.createClient(1, "ola", "nowak");
         client.getAccountList().add(0, new Account(1, new BigDecimal(200), Currency.PLN));
     }
 
     @Test
     void createAccount() {
         //WHEN
-        Account account = clientService.createAccount(Currency.PLN);
+        Account account = clientService.createAccount("Savings", Currency.PLN);
         //THEN
         Assertions.assertThat(account.getBalance()).isEqualTo(BigDecimal.valueOf(0));
     }
