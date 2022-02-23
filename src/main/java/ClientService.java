@@ -11,8 +11,8 @@ public class ClientService {
     private static Integer accountNumber = 1;
 
 
-    public Account createAccount(Currency currency) { //SRP - single responsibility
-        return new Account(accountNumber, new BigDecimal(0), currency);
+    public Account createAccount(String type, Currency currency) { //SRP - single responsibility
+        return Account.createAccount(type,accountNumber, BigDecimal.ZERO, currency);
     }
 
     public void addAccountToClient(Client client, Account account) {

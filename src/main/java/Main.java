@@ -4,10 +4,10 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
 
-        Client client = new Client(1, "Adam", "Bosak", new ArrayList<>());
-        Client client1 = new Client(2, "Agata", "Kowalska", new ArrayList<>());
-        Client client2 = new Client(3, "Adrian", "Boski", new ArrayList<>());
-        Client client3 = new Client(4, "Daria", "Mędrek", new ArrayList<>());
+        Client client = Client.createClient(1, "Adam", "Bosak");
+        Client client1 =Client.createClient(2, "Agata", "Kowalska");
+        Client client2 =Client.createClient(3, "Adrian", "Boski");
+        Client client3 =Client.createClient(4, "Daria", "Mędrek");
 
         CurrencyService currencyService = new CurrencyService();
 
@@ -19,7 +19,9 @@ public class Main {
 
         System.out.println(client);
         ClientService clientService = new ClientService();
-        Account account1 = clientService.createAccount(Currency.USD);
+        Account account1 = clientService.createAccount("Youth", Currency.PLN);
+        Account account2 = Account.createAccount("Savings", 99, BigDecimal.ZERO, Currency.EUR);
+
 
         clientService.addAccountToClient(client, account1);
         System.out.println(client);
@@ -34,6 +36,9 @@ public class Main {
         System.out.println(currencyService.convert(BigDecimal.valueOf(1000),Currency.GBP,Currency.EUR));
         System.out.println(currencyService.convert(BigDecimal.valueOf(300),Currency.USD,Currency.EUR));
         System.out.println(currencyService.convert(BigDecimal.valueOf(10),Currency.PLN,Currency.USD));
+
+        System.out.println(account2);
+        System.out.println(((SavingsAccount) account2).getInterestRate());
 
     }
 }
