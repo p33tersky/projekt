@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Main {
     public static void main(String[] args) {
@@ -39,6 +40,12 @@ public class Main {
 
         System.out.println(account2);
         System.out.println(((SavingsAccount) account2).getInterestRate());
+
+        Client client5 = new Client.ClientBuilder(39, "john","Szybki")
+                .withAge((short) 21)
+                .withIsMale(true)
+                .build();
+        System.out.println(client5);
 
     }
 }

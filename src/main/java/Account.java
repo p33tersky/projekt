@@ -15,6 +15,7 @@ public class Account {
         this.currency = currency;
     }
 
+    //factory pattern
     public static Account createAccount(String type, int id, BigDecimal balance, Currency currency) {
         if (type.equals("Savings")){
             return new SavingsAccount(id,balance,currency);
