@@ -1,4 +1,4 @@
 public interface MoneyTransferStrategy {
 
-    void moneyTransfer(Client sender, Client recipient);
+    void moneyTransfer(int senderId, int recipientId);
 }

@@ -63,6 +63,8 @@ public class ClientService {
         }
     }
 
+
+
 //    public BigDecimal convert (BigDecimal amountToExchange, Currency currencyToExchange, Currency currencyToGet){
 //        double exchange = currencyToExchange.getExchangeToPLN()/currencyToGet.getExchangeToPLN();
 //        return amountToExchange.multiply(BigDecimal.valueOf(exchange));
